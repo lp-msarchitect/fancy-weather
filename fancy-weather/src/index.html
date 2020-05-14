@@ -3,9 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Fancy weather</title>
   </head>
   <body>
-    <h1>Fancy weather</h1>
+    <main class="main">
+      <section class="controls">
+        <button class="button">
+          <span class="visible-hiddenvisible-hidden">Refresh image</span>
+        </button>
+        <select name="" id="">
+          <option value="">EN</option>
+          <option value="">RU</option>
+          <option value="">BY</option>
+        </select>
+        <select name="" id="">
+          <option value="">F</option>
+          <option value="">C</option>
+        </select>
+        <input type="text" placeholder="Search city or ZIP" />
+        <button class="button">Search</button>
+      </section>
+      <section class="today">
+        <p class="today__city-title">Minsk, Belarus</p>
+        <p class="today__data">Mon 28 October</p>
+        <p class="today__time">17:23</p>
+        <p class="today__temperature">10</p>
+        <div class="today__summary">
+          <p>overcast</p>
+          <p>fells like</p>
+          <p>wind</p>
+          <p>humidity</p>
+        </div>
+        <div class="forecast">
+          <div class="forecast__day day">
+            <span class="day__weekday">Tuesday</span>
+            <span class="day__temperature">7</span>
+          </div>
+          <div class="forecast__day day">
+            <span class="day__weekday">Tuesday</span>
+            <span class="day__temperature">7</span>
+          </div>
+          <div class="forecast__day day">
+            <span class="day__weekday">Tuesday</span>
+            <span class="day__temperature">7</span>
+          </div>
+        </div>
+      </section>
+      <section class="geo">
+        <div class="geo__map"></div>
+        <span class="geo__coordinates">53 54</span>
+        <span class="geo__coordinates">53 54</span>
+      </section>
+    </main>
   </body>
 </html>
