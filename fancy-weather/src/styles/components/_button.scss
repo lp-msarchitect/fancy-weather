@@ -1,0 +1,58 @@
+//Variables (переменные) —- для соотнесения значений,
+//  специфичных для компонента с общим стилем сайта и во
+//  избежание использования магических чисел.
+
+$button-bgcolor: $color-primary;
+$button-textcolor: $color-text;
+$border-radius: 5px;
+$font-size: 14px;
+$line-height: 17px;
+$button-padding: 13px 15px;
+$button-bgcolor-hover: $color-darken;
+
+//Mixins (миксины) —- для динамически-генерируемых вариаций
+// компонента (не обязательны, если несколько вариаций уже есть).
+
+@mixin button-color-theme($color, $bg-color, $color-hover, $bg-color-hover) {
+  color: $color;
+  background-color: $bg-color;
+
+  &:hover {
+    color: $color-hover;
+    background-color: $bg-color-hover;
+  }
+}
+
+//Structure — структура или макет компонента, все остальное
+// типа цветов сюда не относится.
+
+%button {
+  display: inline-block;
+  border: none;
+  border-radius: $border-radius;
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size: $font-size;
+  line-height: $line-height;
+  padding: $button-padding;
+  text-transform: uppercase;
+}
+
+// Relationships (отношения) —- любые CSS, которые отвечают за
+// отношения с другими компонентами.
+
+// Themes (темы) —- CSS, не относящиеся к макету:
+// фоны, цвета, тени и т.д.
+
+// Exported Selectors (экспортируемые селекторы) —- используемые
+// классы и селекторы CSS
+
+.button {
+  @extend %button;
+  @include button-color-theme(
+    $button-textcolor,
+    $button-bgcolor,
+    $button-textcolor,
+    $button-bgcolor-hover
+  );
+}
