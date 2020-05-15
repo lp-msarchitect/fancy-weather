@@ -1,0 +1,45 @@
+.toggler {
+  position: relative;
+  display: inline-flex;
+  color: $color-text;
+  border-radius: 5px;
+  background-color: $color-darken;
+  font-size: 14px;
+  line-height: 17px;
+  background-color: $color-primary;
+  cursor: pointer;
+  font-weight: bold;
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 50%;
+    background-color: $color-darken;
+    z-index: 1;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__value {
+    display: inline-block;
+    padding: 13px 15px;
+    width: 50%;
+    text-align: center;
+  }
+
+  &__checkbox:checked + &__slider {
+    left: 50%;
+    right: 0;
+    // transform: translateX(100%);
+    border-radius: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}
