@@ -1,0 +1,52 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+  flex-direction: column;
+  color: $color-text;
+  cursor: pointer;
+
+  &__button {
+    position: relative;
+    padding-right: 35px;
+
+    &::before {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      content: '';
+      width: 10px;
+      height: 10px;
+      background-image: url('../../images/arrow.svg');
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+  }
+
+  &__options {
+    display: none;
+    position: absolute;
+    width: 100%;
+    background-color: $color-primary;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  &:hover &__options {
+    display: block;
+  }
+
+  &:hover &__button {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &__item {
+    padding: 13px 15px;
+
+    &:hover {
+      background-color: $color-darken;
+      border-radius: 5px;
+    }
+  }
+}
