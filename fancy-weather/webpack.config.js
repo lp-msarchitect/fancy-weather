@@ -28,6 +28,19 @@ module.exports = (env, options) => {
               options: {
                 outputPath: './images/',
                 name: '[name].[ext]',
+                exclude: [path.join(__dirname, '/src/assets/fonts')],
+              },
+            },
+          ],
+        },
+        {
+          test: /\.(ttf)$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                outputPath: './fonts/',
+                name: '[name].[ext]',
               },
             },
           ],
@@ -63,8 +76,12 @@ module.exports = (env, options) => {
       }),
       new CopyWebpackPlugin([
         {
-          from: './src/images',
+          from: './src/assets/images',
           to: './images',
+        },
+        {
+          from: './src/assets/fonts',
+          to: './fonts',
         },
       ]),
     ],
