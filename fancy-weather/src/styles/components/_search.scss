@@ -1,8 +1,11 @@
 .search {
   display: inline-flex;
+  font-family: Montserrat;
+  font-weight: bold;
 
   &__input {
     font-size: 14px;
+    line-height: $line-height;
     padding: 13px 15px;
     border: 1px solid rgba(228, 227, 227, 0.2);
     border-right: none;
@@ -10,23 +13,44 @@
     border-bottom-left-radius: 5px;
     background-color: $color-darken;
     color: $color-text;
-    background-image: url(../../images/mic.svg);
-    background-repeat: no-repeat;
-    background-position: 90% center;
 
     &::placeholder {
       color: $color-text;
     }
   }
 
+  &__controls {
+    position: relative;
+  }
+
+  &__controls-item {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1em;
+    width: 0.5em;
+    border: none;
+    background-color: transparent;
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &--mic {
+      left: -2em;
+      background-image: url('../../assets/images/mic.svg');
+    }
+  }
+
   &__button {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    border: 1px solid transparent;
 
     &:hover {
-      //TODO разобраться с box-sizing
+      box-sizing: border-box;
       border: 1px solid rgba(228, 227, 227, 0.2);
-      border-left: none;
+      border-left-color: transparent;
     }
   }
 }

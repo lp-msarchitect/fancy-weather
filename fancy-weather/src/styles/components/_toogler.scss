@@ -6,9 +6,10 @@
   background-color: $color-darken;
   font-size: 14px;
   line-height: 17px;
+  font-family: Montserrat;
+  font-weight: bold;
   background-color: $color-primary;
   cursor: pointer;
-  font-weight: bold;
 
   &__checkbox {
     display: none;

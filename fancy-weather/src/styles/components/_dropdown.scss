@@ -1,4 +1,6 @@
 .dropdown {
+  font-family: Montserrat;
+  font-weight: bold;
   position: relative;
   display: inline-block;
   flex-direction: column;
@@ -17,7 +19,7 @@
       content: '';
       width: 10px;
       height: 10px;
-      background-image: url('../../images/arrow.svg');
+      background-image: url('../../assets/images/arrow.svg');
       background-repeat: no-repeat;
       background-position: center center;
     }
