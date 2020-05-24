@@ -5,28 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fancy weather</title>
   </head>
+
   <body>
     <main class="main">
       <section class="controls">
-        <button class="button">
-          <span class="visible-hidden">Refresh image</span>
-        </button>
-        <select name="" id="">
-          <option value="">EN</option>
-          <option value="">RU</option>
-          <option value="">BY</option>
-        </select>
-        <select name="" id="">
-          <option value="">F</option>
-          <option value="">C</option>
-        </select>
-        <input type="text" placeholder="Search city or ZIP" />
-        <button class="button">Search</button>
+        <div>
+          <button class="button button--refresh">
+            <span class="visibility-hidden">Refresh image</span>
+          </button>
+          <div class="dropdown">
+            <button class="button dropdown__button">EN</button>
+            <ul class="list dropdown__options">
+              <li class="dropdown__item">EN</li>
+              <li class="dropdown__item">RU</li>
+              <li class="dropdown__item">BY</li>
+            </ul>
+          </div>
+          <label for="toggler" class="toggler">
+            <input class="toggler__checkbox" type="checkbox" id="toggler" />
+            <span class="toggler__slider"></span>
+            <span class="toggler__value">°F</span>
+            <span class="toggler__value">°C</span>
+          </label>
+        </div>
+        <div class="search">
+          <div class="search__input-container">
+            <input
+              class="search__input"
+              type="text"
+              placeholder="Search city or ZIP"
+            />
+          </div>
+          <div class="search__controls">
+            <button
+              class="search__controls-item search__controls-item--mic"
+            ></button>
+            <button class="search__button button">Search</button>
+          </div>
+        </div>
       </section>
       <section class="today">
         <p class="today__city-title">Minsk, Belarus</p>
-        <p class="today__data">Mon 28 October</p>
-        <p class="today__time">17:23</p>
+        <p class="today__date-time">
+          <span>Mon 28 October</span><span>17:23</span>
+        </p>
         <p class="today__temperature">10</p>
         <div class="today__summary">
           <p>overcast</p>
@@ -34,21 +56,21 @@
           <p>wind</p>
           <p>humidity</p>
         </div>
-        <div class="forecast">
-          <div class="forecast__day day">
-            <span class="day__weekday">Tuesday</span>
-            <span class="day__temperature">7</span>
-          </div>
-          <div class="forecast__day day">
-            <span class="day__weekday">Tuesday</span>
-            <span class="day__temperature">7</span>
-          </div>
-          <div class="forecast__day day">
-            <span class="day__weekday">Tuesday</span>
-            <span class="day__temperature">7</span>
-          </div>
-        </div>
       </section>
+      <div class="forecast">
+        <div class="forecast__day day">
+          <span class="day__weekday">Tuesday</span>
+          <span class="day__temperature">7°</span>
+        </div>
+        <div class="forecast__day day">
+          <span class="day__weekday">Tuesday</span>
+          <span class="day__temperature">7°</span>
+        </div>
+        <div class="forecast__day day">
+          <span class="day__weekday">Tuesday</span>
+          <span class="day__temperature">7°</span>
+        </div>
+      </div>
       <section class="geo">
         <div class="geo__map"></div>
         <span class="geo__coordinates">53 54</span>
