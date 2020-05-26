@@ -28,10 +28,7 @@ module.exports = (env, options) => {
               options: {
                 outputPath: './images/',
                 name: '[name].[ext]',
-                exclude: [
-                  path.join(__dirname, '/src/assets/fonts'),
-                  path.join(__dirname, '/src/assets/icons'),
-                ],
+                exclude: [path.join(__dirname, '/src/assets/fonts')],
               },
             },
           ],
@@ -43,18 +40,6 @@ module.exports = (env, options) => {
               loader: 'file-loader',
               options: {
                 outputPath: './fonts/',
-                name: '[name].[ext]',
-              },
-            },
-          ],
-        },
-        {
-          test: /\.(svg)$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                outputPath: './icons/',
                 name: '[name].[ext]',
               },
             },
@@ -97,10 +82,6 @@ module.exports = (env, options) => {
         {
           from: './src/assets/fonts',
           to: './fonts',
-        },
-        {
-          from: './src/assets/icons',
-          to: './icons',
         },
       ]),
     ],
