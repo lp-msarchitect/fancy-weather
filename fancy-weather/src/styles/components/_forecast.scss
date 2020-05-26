@@ -1,0 +1,9 @@
+.forecast {
+  display: flex;
+  justify-content: space-between;
+  max-width: 582px; //fix width
+
+  &__day {
+    flex: 1 1 30%;
+  }
+}
