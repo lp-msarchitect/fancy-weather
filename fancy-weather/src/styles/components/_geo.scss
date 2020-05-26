@@ -1,0 +1,16 @@
+.geo {
+  color: $color-text;
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+
+  &__map {
+  }
+
+  &__coordinates {
+  }
+}
