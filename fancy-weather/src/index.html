@@ -8,7 +8,7 @@
 
   <body>
     <main class="main">
-      <section class="controls">
+      <section class="controls main__controls">
         <div>
           <button class="button button--refresh">
             <span class="visibility-hidden">Refresh image</span>
@@ -28,6 +28,14 @@
             <span class="toggler__value">°C</span>
           </label>
         </div>
+        <div>
+          <a href="https://www.weatherapi.com/" title="Free Weather API"
+            ><img
+              src="//cdn.weatherapi.com/v4/images/weatherapi_logo.png"
+              alt="Weather data by WeatherAPI.com"
+              border="0"
+          /></a>
+        </div>
         <div class="search">
           <div class="search__input-container">
             <input
@@ -44,7 +52,7 @@
           </div>
         </div>
       </section>
-      <section class="today">
+      <section class="today main__today">
         <p class="today__city-title">Minsk, Belarus</p>
         <p class="today__date-time">
           <span>Mon 28 October</span><span>17:23</span>
@@ -58,7 +66,7 @@
           <p>humidity: 83%</p>
         </div>
       </section>
-      <div class="forecast">
+      <div class="forecast main__forecast">
         <div class="forecast__day day">
           <span class="day__weekday">Tuesday</span>
           <span class="day__temperature day__temperature--cloudy">7°</span>
@@ -72,7 +80,7 @@
           <span class="day__temperature day__temperature--cloudy">7°</span>
         </div>
       </div>
-      <section class="geo">
+      <section class="geo main__geo">
         <div class="geo__map"></div>
         <span class="geo__coordinates">Latitude: 53°54'</span>
         <span class="geo__coordinates">Longitude: 27°34'</span>
