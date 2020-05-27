@@ -1,3 +1,29 @@
 .main {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(3, minmax(50px, max-content));
+  grid-gap: 10%;
+  grid-template-areas:
+    'controls controls'
+    'today    geo'
+    'forecast geo';
   background-color: rgba($color: #000000, $alpha: 0.5);
+  align-items: end;
+
+  &__controls {
+    grid-area: controls;
+  }
+
+  &__today {
+    grid-area: today;
+  }
+
+  &__forecast {
+    grid-area: forecast;
+  }
+
+  &__geo {
+    grid-area: geo;
+  }
 }
