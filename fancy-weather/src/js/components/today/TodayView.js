@@ -7,9 +7,10 @@ export default class TodayView extends ViewComponent {
         <p class="today__date-time">
           <span>Mon 28 October</span><span>17:23</span>
         </p>
-        <p class="today__temperature today__temperature--cloudy">10</p>
+        <p class="today__temperature">10</p>
         <span class="today__grad">°</span>
         <div class="today__summary">
+        <span class="today__condition"></span>
           <p>overcast</p>
           <p id="fells-like">fells like: 7°</p>
           <p id="wind">wind: 2 m/s</p>
@@ -35,7 +36,16 @@ export default class TodayView extends ViewComponent {
     this.element.querySelector(
       '#humidity'
     ).innerHTML = `humidity: ${wetherObj.humidity}%`;
+
+    this.element.querySelector(
+      '.today__condition'
+    ).style.backgroundImage = `url('${wetherObj.weather_icon}')`;
     // this.element.querySelector('.today__city-title').innerHTML = wetherObj;
-    // this.element.querySelector('.today__city-title').innerHTML = wetherObj;
+  }
+
+  set dateTime(value) {
+    this.element.querySelector(
+      '.today__date-time'
+    ).innerHTML = `<span>${value.date}</span><span>${value.time}</span>`;
   }
 }

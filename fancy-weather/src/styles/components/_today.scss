@@ -2,7 +2,7 @@
   color: $color-text;
   font-family: Montserrat;
   font-weight: bold;
-  max-width: 597px; //fix width
+  // max-width: 597px; //fix width
   // background-color: white;
   display: flex;
   flex-wrap: wrap;
@@ -31,31 +31,26 @@
   }
 
   &__temperature {
-    position: relative;
     flex: 0 1 auto;
     line-height: 1;
     font-size: 300px;
     // background-color: yellow;
     text-transform: uppercase;
     text-align: center;
+  }
 
-    &::after {
-      position: absolute;
-      top: 15px;
-      right: -225px;
-      content: '';
-      height: 140px;
-      width: 240px;
-      position: absolute;
-      // background-color: lightcoral;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: contain;
-    }
-
-    &--cloudy::after {
-      background-image: url('../../assets/images/cloudy.svg');
-    }
+  &__condition {
+    position: absolute;
+    top: -155px;
+    left: -25px;
+    height: 140px;
+    width: 240px;
+    position: absolute;
+    // object-fit: cover;
+    background-image: url('../../assets/images/weather_icons/day/200.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
   }
 
   &__grad {
@@ -68,6 +63,7 @@
   }
 
   &__summary {
+    position: relative;
     z-index: 5;
     flex: 0 1 30%;
     line-height: 37px;
