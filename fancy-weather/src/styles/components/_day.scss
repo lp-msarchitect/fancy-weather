@@ -4,7 +4,7 @@
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
-  max-width: 160px; //fix width
+  // max-width: 160px; //fix width
 
   &__weekday {
     font-size: 22px;
@@ -16,12 +16,8 @@
     font-size: 80px;
     font-weight: 600;
     // background-color: green;
-    background-size: 50%;
+    background-size: contain;
     background-repeat: no-repeat;
-    background-position: right;
-
-    &--cloudy {
-      background-image: url(../../assets/images/cloudy.svg);
-    }
+    background-position: right -0.15em;
   }
 }

@@ -5,5 +5,9 @@
 
   &__day {
     flex: 1 1 30%;
+
+    &:not(:first-child) {
+      margin-left: 5%;
+    }
   }
 }
