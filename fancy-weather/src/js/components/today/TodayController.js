@@ -1,4 +1,5 @@
 import Clock from '../../utils/Clock';
+import { getDayOfWeek, getMonth } from '../../utils/dateUtils';
 
 export default class TodayController {
   constructor(view, model) {
@@ -28,33 +29,8 @@ export default class TodayController {
     };
   }
 
-  getDayOfWeek(date) {
-    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    return days[date.getDay()];
-  }
-
-  getMonth(date) {
-    const months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-    return months[date.getMonth()];
-  }
-
   getCurrentLocalDate(date) {
-    return `${this.getDayOfWeek(date)} ${date.getDate()} ${this.getMonth(
-      date
-    )}`;
+    return `${getDayOfWeek(date)} ${date.getDate()} ${getMonth(date)}`;
   }
 
   getCurrentLocalTime(date) {
