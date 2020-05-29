@@ -20,6 +20,14 @@ export async function getCurrentWeatherState(coords) {
   return await data.json();
 }
 
+export async function getWeatherForecast3(coords) {
+  const data = await fetch(
+    `http://api.weatherapi.com/v1/forecast.json?key=${KEYS.weatherApiKey}&q=${coords.latitude},${coords.longitude}&days=3`
+  );
+
+  return await data.json();
+}
+
 export async function getWetherIconBlob(url) {
   const data = await fetch(url);
   return await data.blob();
