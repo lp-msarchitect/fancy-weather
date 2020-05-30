@@ -14,6 +14,10 @@ export default class Dispatcher {
     if (handlerIndex !== -1) this.subscribers.splice(handlerIndex, 1);
   }
 
+  unsubscribeAll() {
+    this.subscribers = [];
+  }
+
   broadcast(data) {
     this.subscribers.forEach((handler) => {
       handler(data);
