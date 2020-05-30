@@ -17,4 +17,10 @@ export default class Forecast {
       this.view.drawDays(days);
     });
   }
+
+  update(event) {
+    if (event.name === 'search') {
+      this.coords = event.value;
+    }
+  }
 }

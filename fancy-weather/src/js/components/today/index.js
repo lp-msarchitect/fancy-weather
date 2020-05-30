@@ -16,4 +16,10 @@ export default class Today {
   set coords(value) {
     this.controller.coords = value;
   }
+
+  update(event) {
+    if (event.name === 'search') {
+      this.coords = event.value;
+    }
+  }
 }
