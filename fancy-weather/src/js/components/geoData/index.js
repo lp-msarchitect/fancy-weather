@@ -7,9 +7,9 @@ export default class GeoData {
     this.ymap = new Ymap(this.view.getMapElement());
   }
 
-  async initMap() {
+  async initMap(coords) {
     await this.ymap.init();
-    return this;
+    this.goTo(coords);
   }
 
   get element() {
@@ -17,7 +17,13 @@ export default class GeoData {
   }
 
   goTo(coords) {
-    this.ymap.goTo(coords);
+    this.ymap.goTo(coords, false);
     this.view.coords = coords;
+  }
+
+  update(event) {
+    if (event.name === 'search') {
+      this.goTo(event.value);
+    }
   }
 }
