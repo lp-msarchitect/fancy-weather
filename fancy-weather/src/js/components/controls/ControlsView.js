@@ -1,5 +1,6 @@
 import ViewComponent from '../ViewComponent';
 import ControlEvent from './ControlEvent';
+import { getGeoObjectByCityName } from '../../utils/clientApi';
 
 export default class ControlsView extends ViewComponent {
   constructor(global) {
@@ -99,9 +100,20 @@ export default class ControlsView extends ViewComponent {
     if (temp) this.dispatcher.broadcast(new ControlEvent('changeunits', temp));
   }
 
-  startSearchHandler(e) {
+  async startSearchHandler(e) {
     const searchValue = this.element.querySelector('.search__input').value;
-    if (searchValue)
-      this.dispatcher.broadcast(new ControlEvent('search', searchValue));
+    if (searchValue) {
+      const geoObj = await getGeoObjectByCityName(searchValue);
+      const coords = geoObj.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(
+        ' '
+      );
+      console.log('coords: ', coords);
+
+      const position = {
+        longitude: coords[0],
+        latitude: coords[1],
+      };
+      this.dispatcher.broadcast(new ControlEvent('search', position));
+    }
   }
 }
