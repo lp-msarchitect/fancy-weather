@@ -61,6 +61,7 @@ export default class ControlsView extends ViewComponent {
     const langSelectorElement = this.element.querySelector('.dropdown');
     const changeImgButton = this.element.querySelector('#change-img-button');
     const startSearchButton = this.element.querySelector('#start-search');
+    const inputSearch = this.element.querySelector('.search__input');
 
     changeImgButton.addEventListener('click', this.changeImgHandler.bind(this));
     langSelectorElement.addEventListener(
@@ -77,6 +78,8 @@ export default class ControlsView extends ViewComponent {
       'click',
       this.startSearchHandler.bind(this)
     );
+
+    inputSearch.addEventListener('keydown', this.startSearchHandler.bind(this));
   }
 
   changeImgHandler(e) {
@@ -101,6 +104,9 @@ export default class ControlsView extends ViewComponent {
   }
 
   async startSearchHandler(e) {
+    if (e.type === 'keydown' && e.keyCode !== 13) {
+      return;
+    }
     const searchValue = this.element.querySelector('.search__input').value;
     if (searchValue) {
       const geoObj = await getGeoObjectByCityName(searchValue);
