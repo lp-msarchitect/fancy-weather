@@ -10,7 +10,6 @@ export default class ForecastDay extends ViewComponent {
   }
 
   redraw(dayState) {
-    console.log('draw day state: ', dayState);
     this.element.querySelector('.day__weekday').innerHTML = dayState.weekDay;
     this.element.querySelector('.day__temperature').innerHTML = `${Math.round(
       dayState.avgTempC
