@@ -1,6 +1,6 @@
 import ViewComponent from '../ViewComponent';
 import ControlEvent from '../../utils/ControlEvent';
-import { getGeoObjectByCityName } from '../../utils/clientApi';
+import { getCoordsByCityName } from '../../utils/clientApi';
 
 export default class ControlsView extends ViewComponent {
   constructor(global) {
@@ -107,21 +107,15 @@ export default class ControlsView extends ViewComponent {
       }
       const searchValue = this.element.querySelector('.search__input').value;
       if (searchValue) {
-        const geoObj = await getGeoObjectByCityName(searchValue);
+        const response = await getCoordsByCityName(searchValue);
 
-        if (geoObj.response.GeoObjectCollection.featureMember.length === 0) {
+        if (response.results.length === 0) {
           throw new Error(`No results found for ${searchValue}`);
         }
 
-        const coords = geoObj.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(
-          ' '
-        );
-        console.log('coords: ', coords);
-
-        const position = {
-          longitude: coords[0],
-          latitude: coords[1],
-        };
+        const position = {};
+        position.latitude = response.results[0].geometry.lat;
+        position.longitude = response.results[0].geometry.lng;
         this.dispatcher.broadcast(new ControlEvent('search', position));
       }
     } catch (error) {

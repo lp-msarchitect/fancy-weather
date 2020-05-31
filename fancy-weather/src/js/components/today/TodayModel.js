@@ -1,5 +1,5 @@
 import {
-  getGeoObjectByCoords,
+  getCityNameByCoords,
   getCurrentWeatherState,
   getWetherIconBlob,
 } from '../../utils/clientApi';
@@ -10,21 +10,10 @@ export default class TodayModel {
   }
 
   async getCityName(coords) {
-    const geoObj = await getGeoObjectByCoords(coords);
-    const address =
-      geoObj.response.GeoObjectCollection.featureMember[0].GeoObject
-        .metaDataProperty.GeocoderMetaData.Address;
+    const response = await getCityNameByCoords(coords);
 
-    let city = '';
-    let country = '';
-    address.Components.forEach((component) => {
-      if (component.kind === 'country') {
-        country = component.name;
-      }
-      if (component.kind === 'locality') {
-        city = component.name;
-      }
-    });
+    const { city } = response.results[0].components;
+    const { country } = response.results[0].components;
 
     this.cityName = `${city}, ${country}`;
     return this.cityName;

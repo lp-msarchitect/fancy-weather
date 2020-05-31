@@ -3,6 +3,7 @@ const KEYS = {
   weatherApiKey: 'da6962b372e64afbb47133333202705',
   ipinfoKey: 'd5e7bd62571e27',
   unsplashKey: 'O2Vk-5MjQubBj3oK8P3RtBY4Q0xdWrpEe_MlUKt5ffc',
+  opencagedataKey: 'ef73d4407cce4c5ba76e665fdfa17fe0',
 };
 
 export async function getIpInfoPosition() {
@@ -10,18 +11,18 @@ export async function getIpInfoPosition() {
   return await geo.json();
 }
 
-export async function getGeoObjectByCoords(coords) {
+export async function getCityNameByCoords(coords) {
   if (!coords) return new Error('invalid coordinates');
   const data = await fetch(
-    `https://geocode-maps.yandex.ru/1.x/?&geocode=${coords.longitude},${coords.latitude}&lang=en_US&apikey=${KEYS.ymapsKey}&kind=locality&format=json&results=1`
+    `https://api.opencagedata.com/geocode/v1/json?q=${coords.latitude}+${coords.longitude}&language=en&key=${KEYS.opencagedataKey}`
   );
 
   return data.json();
 }
 
-export async function getGeoObjectByCityName(name) {
+export async function getCoordsByCityName(name) {
   const data = await fetch(
-    `https://geocode-maps.yandex.ru/1.x/?lang=en_US&apikey=${KEYS.ymapsKey}&kind=locality&format=json&geocode=${name}`
+    `https://api.opencagedata.com/geocode/v1/json?q=${name}&language=en&key=${KEYS.opencagedataKey}`
   );
   return await data.json();
 }
@@ -50,7 +51,7 @@ export async function getWetherIconBlob(url) {
 export async function getPhotoBlob(query) {
   console.info('Background image query: ', query);
   const data = await fetch(
-    `https://api.unsplash.com/photos/random?orientation=landscape&per_page=1&query=${query}&client_id=${KEYS.unsplashKey}`
+    `https://api.unsplash.com/photos/random?orientation=landscape&per_page=1&query=weather${query}&client_id=${KEYS.unsplashKey}`
   );
   const json = await data.json();
   const url = json.urls.regular;
