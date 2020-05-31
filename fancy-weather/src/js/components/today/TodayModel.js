@@ -33,7 +33,7 @@ export default class TodayModel {
   async getCurrentState(coords = this.coords) {
     const state = await getCurrentWeatherState(coords);
     const iconBlob = await getWetherIconBlob(
-      `http:${state.current.condition.icon}`
+      `https:${state.current.condition.icon}`
     );
 
     const stateObj = {

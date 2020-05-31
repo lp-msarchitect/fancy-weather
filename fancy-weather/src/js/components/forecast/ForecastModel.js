@@ -18,7 +18,7 @@ export default class ForecastModel {
       dayObj.avgTempC = day.day.avgtemp_c;
       dayObj.avgTempF = day.day.avgtemp_f;
       dayObj.icon = URL.createObjectURL(
-        await getWetherIconBlob(`http:${day.day.condition.icon}`)
+        await getWetherIconBlob(`https:${day.day.condition.icon}`)
       );
       return dayObj;
     });
