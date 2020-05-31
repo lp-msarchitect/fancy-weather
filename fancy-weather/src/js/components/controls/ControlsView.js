@@ -24,13 +24,8 @@ export default class ControlsView extends ViewComponent {
             <span class="toggler__value">°C</span>
           </label>
         </div>
-        <div>
-          <a href="https://www.weatherapi.com/" title="Free Weather API"
-            ><img
-              src="//cdn.weatherapi.com/v4/images/weatherapi_logo.png"
-              alt="Weather data by WeatherAPI.com"
-              border="0"
-          /></a>
+        <div class="error">
+          
         </div>
         <div class="search">
           <div class="search__input-container">
@@ -82,6 +77,8 @@ export default class ControlsView extends ViewComponent {
     inputSearch.addEventListener('keydown', this.startSearchHandler.bind(this));
   }
 
+  removeEventListeners() {}
+
   changeImgHandler(e) {
     this.dispatcher.broadcast(new ControlEvent('changeimg'));
   }
@@ -104,22 +101,31 @@ export default class ControlsView extends ViewComponent {
   }
 
   async startSearchHandler(e) {
-    if (e.type === 'keydown' && e.keyCode !== 13) {
-      return;
-    }
-    const searchValue = this.element.querySelector('.search__input').value;
-    if (searchValue) {
-      const geoObj = await getGeoObjectByCityName(searchValue);
-      const coords = geoObj.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(
-        ' '
-      );
-      console.log('coords: ', coords);
+    try {
+      if (e.type === 'keydown' && e.keyCode !== 13) {
+        return;
+      }
+      const searchValue = this.element.querySelector('.search__input').value;
+      if (searchValue) {
+        const geoObj = await getGeoObjectByCityName(searchValue);
 
-      const position = {
-        longitude: coords[0],
-        latitude: coords[1],
-      };
-      this.dispatcher.broadcast(new ControlEvent('search', position));
+        if (geoObj.response.GeoObjectCollection.featureMember.length === 0) {
+          throw new Error(`No results found for ${searchValue}`);
+        }
+
+        const coords = geoObj.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(
+          ' '
+        );
+        console.log('coords: ', coords);
+
+        const position = {
+          longitude: coords[0],
+          latitude: coords[1],
+        };
+        this.dispatcher.broadcast(new ControlEvent('search', position));
+      }
+    } catch (error) {
+      this.dispatcher.broadcast(new ControlEvent('error', error.message));
     }
   }
 }
