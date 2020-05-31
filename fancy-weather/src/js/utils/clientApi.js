@@ -55,9 +55,13 @@ export async function getWetherIconBlob(url) {
   return await data.blob();
 }
 
-export async function getPhoto(query) {
+export async function getPhotoBlob(query) {
+  console.info('Background image query: ', query);
   const data = await fetch(
     `https://api.unsplash.com/photos/random?orientation=landscape&per_page=1&query=${query}&client_id=${KEYS.unsplashKey}`
   );
-  return await data.json();
+  const json = await data.json();
+  const url = json.urls.regular;
+  const photoData = await fetch(url);
+  return await photoData.blob();
 }
