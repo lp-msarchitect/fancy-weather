@@ -11,7 +11,6 @@ export default class TodayModel {
 
   async getCityName(coords) {
     const geoObj = await getGeoObjectByCoords(coords);
-    console.log('cityObj: ', geoObj);
     const address =
       geoObj.response.GeoObjectCollection.featureMember[0].GeoObject
         .metaDataProperty.GeocoderMetaData.Address;

@@ -30,9 +30,7 @@ export function getMonth(date) {
 }
 
 export function getSeason(date) {
-  console.log('date :', date);
   const month = date.getMonth();
-  console.log('month: ', month);
 
   let season = '';
   switch (`${month}`) {

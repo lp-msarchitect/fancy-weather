@@ -26,17 +26,9 @@ export async function getGeoObjectByCityName(name) {
   return await data.json();
 }
 
-export async function getWeather(coords) {
-  const data = await fetch(
-    `http://api.weatherapi.com/v1/forecast.json?key=${KEYS.weatherApiKey}&q=${coords.latitude},${coords.longitude}&days=3`
-  );
-
-  return await data.json();
-}
-
 export async function getCurrentWeatherState(coords) {
   const data = await fetch(
-    `http://api.weatherapi.com/v1/current.json?key=${KEYS.weatherApiKey}&q=${coords.latitude},${coords.longitude}`
+    `https://api.weatherapi.com/v1/current.json?key=${KEYS.weatherApiKey}&q=${coords.latitude},${coords.longitude}`
   );
 
   return await data.json();
@@ -44,7 +36,7 @@ export async function getCurrentWeatherState(coords) {
 
 export async function getWeatherForecast3(coords) {
   const data = await fetch(
-    `http://api.weatherapi.com/v1/forecast.json?key=${KEYS.weatherApiKey}&q=${coords.latitude},${coords.longitude}&days=3`
+    `https://api.weatherapi.com/v1/forecast.json?key=${KEYS.weatherApiKey}&q=${coords.latitude},${coords.longitude}&days=3`
   );
 
   return await data.json();
