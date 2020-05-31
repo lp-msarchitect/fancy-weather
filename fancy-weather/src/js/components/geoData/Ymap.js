@@ -7,22 +7,22 @@ export default class Ymap {
 
   async init(mapElement = this.mapElement) {
     try {
-      const maps = await ymaps.load();
+      this.ymaps = await ymaps.load();
 
-      this.map = new maps.Map(mapElement, {
-        center: [-8.369326, 115.166023],
+      this.map = new this.ymaps.Map(mapElement, {
+        center: [0, 0],
         zoom: 8,
       });
+
+      this.mapMark = new this.ymaps.Placemark(this.map.getCenter());
+      this.map.geoObjects.add(this.mapMark);
     } catch (error) {
       console.error('Something went wrong', error);
     }
   }
 
-  goTo(coords, isSlow = true) {
-    if (isSlow) {
-      this.map.panTo([coords.latitude, coords.longitude], { delay: 1500 });
-    } else {
-      this.map.setCenter([coords.latitude, coords.longitude]);
-    }
+  goTo(coords) {
+    this.map.setCenter([coords.latitude, coords.longitude]);
+    this.mapMark.geometry.setCoordinates(this.map.getCenter());
   }
 }
