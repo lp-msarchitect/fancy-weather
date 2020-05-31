@@ -1,10 +1,12 @@
 import Clock from '../../utils/Clock';
-import { getDayOfWeek, getMonth } from '../../utils/dateUtils';
+import { getDayOfWeek, getMonth, getSeason } from '../../utils/dateUtils';
+import ControlEvent from '../../utils/ControlEvent';
 
 export default class TodayController {
-  constructor(view, model) {
+  constructor(view, model, dispatcher) {
     this.view = view;
     this.model = model;
+    this.dispatcher = dispatcher;
     this.clock = new Clock();
   }
 
@@ -18,6 +20,9 @@ export default class TodayController {
       this.clock.date = +state.local_time;
       this.dateTickHandler(+state.local_time);
       this.clock.subscribe(this.dateTickHandler.bind(this));
+      const season = getSeason(new Date(+state.local_time));
+      const imgQuery = `${state.is_day ? 'day' : 'night'} ${season}`;
+      this.dispatcher.broadcast(new ControlEvent('changeimg', imgQuery));
     });
   }
 

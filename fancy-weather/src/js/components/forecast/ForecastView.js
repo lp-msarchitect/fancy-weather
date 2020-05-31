@@ -19,6 +19,8 @@ export default class ForecastView extends ViewComponent {
       const currentDay = days[index];
       dayElement.redraw(currentDay);
     });
+
+    this.days = days;
   }
 
   initDayElements() {
@@ -27,5 +29,12 @@ export default class ForecastView extends ViewComponent {
       this.dayElements.push(dayElement);
       this.element.insertAdjacentElement('beforeend', dayElement.element);
     }
+  }
+
+  changeUnits(unit) {
+    this.dayElements.forEach((dayElement, index) => {
+      const currentDay = this.days[index];
+      dayElement.redraw(currentDay, unit);
+    });
   }
 }

@@ -9,11 +9,13 @@ export default class ForecastDay extends ViewComponent {
     super(global, html);
   }
 
-  redraw(dayState) {
+  redraw(dayState, unit = 'c') {
+    let temp = Math.round(dayState.avgTempC);
+    if (unit === 'f') {
+      temp = Math.round(dayState.avgTempF);
+    }
     this.element.querySelector('.day__weekday').innerHTML = dayState.weekDay;
-    this.element.querySelector('.day__temperature').innerHTML = `${Math.round(
-      dayState.avgTempC
-    )}°`;
+    this.element.querySelector('.day__temperature').innerHTML = `${temp}°`;
     this.element.querySelector(
       '.day__temperature'
     ).style.backgroundImage = `url(${dayState.icon})`;

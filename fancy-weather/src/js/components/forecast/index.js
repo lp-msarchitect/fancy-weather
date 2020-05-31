@@ -22,5 +22,8 @@ export default class Forecast {
     if (event.name === 'search') {
       this.coords = event.value;
     }
+    if (event.name === 'changeunits') {
+      this.view.changeUnits(event.value);
+    }
   }
 }

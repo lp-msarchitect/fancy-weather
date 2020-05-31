@@ -39,11 +39,11 @@ export default class TodayModel {
 
     const stateObj = {
       local_time: new Date(state.location.localtime),
-      feels_like_c: state.current.feelslike_c,
-      feels_like_f: state.current.feelslike_f,
+      feels_like_c: Math.round(state.current.feelslike_c),
+      feels_like_f: Math.round(state.current.feelslike_f),
       humidity: state.current.humidity,
-      temp_c: state.current.temp_c,
-      temp_f: state.current.temp_f,
+      temp_c: Math.round(state.current.temp_c),
+      temp_f: Math.round(state.current.temp_f),
       wind_mps: (state.current.wind_kph / 3.6).toFixed(2),
       condition_code: state.current.condition.code,
       weather_icon: URL.createObjectURL(iconBlob),

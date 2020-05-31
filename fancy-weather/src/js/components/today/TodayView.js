@@ -25,6 +25,7 @@ export default class TodayView extends ViewComponent {
   }
 
   set weatherState(wetherObj) {
+    this.weatherObj = wetherObj;
     this.element.querySelector('.today__temperature').innerHTML =
       wetherObj.temp_c;
     this.element.querySelector(
@@ -40,12 +41,30 @@ export default class TodayView extends ViewComponent {
     this.element.querySelector(
       '.today__condition'
     ).style.backgroundImage = `url('${wetherObj.weather_icon}')`;
-    // this.element.querySelector('.today__city-title').innerHTML = wetherObj;
   }
 
   set dateTime(value) {
     this.element.querySelector(
       '.today__date-time'
     ).innerHTML = `<span>${value.date}</span><span>${value.time}</span>`;
+  }
+
+  changeUnits(unit) {
+    if (unit === 'c') {
+      this.element.querySelector(
+        '.today__temperature'
+      ).innerHTML = this.weatherObj.temp_c;
+      this.element.querySelector(
+        '#fells-like'
+      ).innerHTML = `fells like: ${this.weatherObj.feels_like_c}°`;
+    }
+    if (unit === 'f') {
+      this.element.querySelector(
+        '.today__temperature'
+      ).innerHTML = this.weatherObj.temp_f;
+      this.element.querySelector(
+        '#fells-like'
+      ).innerHTML = `fells like: ${this.weatherObj.feels_like_f}°`;
+    }
   }
 }
