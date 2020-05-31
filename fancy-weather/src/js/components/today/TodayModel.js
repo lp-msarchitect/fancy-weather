@@ -11,12 +11,21 @@ export default class TodayModel {
 
   async getCityName(coords) {
     const geoObj = await getGeoObjectByCoords(coords);
-    const city =
-      geoObj.response.GeoObjectCollection.featureMember[0].GeoObject.name;
-    const { length } = geoObj.response.GeoObjectCollection.featureMember;
-    const country =
-      geoObj.response.GeoObjectCollection.featureMember[length - 1].GeoObject
-        .name;
+    console.log('cityObj: ', geoObj);
+    const address =
+      geoObj.response.GeoObjectCollection.featureMember[0].GeoObject
+        .metaDataProperty.GeocoderMetaData.Address;
+
+    let city = '';
+    let country = '';
+    address.Components.forEach((component) => {
+      if (component.kind === 'country') {
+        country = component.name;
+      }
+      if (component.kind === 'locality') {
+        city = component.name;
+      }
+    });
 
     this.cityName = `${city}, ${country}`;
     return this.cityName;
@@ -24,7 +33,6 @@ export default class TodayModel {
 
   async getCurrentState(coords = this.coords) {
     const state = await getCurrentWeatherState(coords);
-    console.log('weather state: ', state);
     const iconBlob = await getWetherIconBlob(
       `http:${state.current.condition.icon}`
     );
