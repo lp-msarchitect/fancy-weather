@@ -1,5 +1,5 @@
 import ViewComponent from '../ViewComponent';
-import ControlEvent from './ControlEvent';
+import ControlEvent from '../../utils/ControlEvent';
 import { getGeoObjectByCityName } from '../../utils/clientApi';
 
 export default class ControlsView extends ViewComponent {

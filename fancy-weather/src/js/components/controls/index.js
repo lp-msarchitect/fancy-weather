@@ -21,6 +21,6 @@ export default class Controls {
   }
 
   dispose() {
-    // TODO implement dispose function
+    this.view.removeEventListeners();
   }
 }
