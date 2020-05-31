@@ -20,7 +20,7 @@ export default class Dispatcher {
 
   broadcast(data) {
     this.subscribers.forEach((handler) => {
-      handler(data);
+      if (typeof handler === 'function') handler(data);
     });
   }
 }
