@@ -12,10 +12,14 @@ export default class TodayModel {
   async getCityName(coords) {
     const response = await getCityNameByCoords(coords);
 
-    const { city } = response.results[0].components;
+    const city =
+      response.results[0].components.city ||
+      response.results[0].components.county;
     const { country } = response.results[0].components;
 
     this.cityName = `${city}, ${country}`;
+    console.log(this.cityName);
+
     return this.cityName;
   }
 
