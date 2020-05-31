@@ -1,4 +1,5 @@
 import ViewComponent from '../ViewComponent';
+import { ConvertDDToDMS } from '../../utils/geoUtils';
 
 export default class GeoDataView extends ViewComponent {
   constructor(global) {
@@ -13,12 +14,10 @@ export default class GeoDataView extends ViewComponent {
   }
 
   set coords(value) {
-    this.element.querySelector(
-      '#latitude'
-    ).innerHTML = `Latitude: ${value.latitude}`;
-    this.element.querySelector(
-      '#longitude'
-    ).innerHTML = `Longitude: ${value.longitude}`;
+    const latDMS = ConvertDDToDMS(value.latitude);
+    const lonDMS = ConvertDDToDMS(value.longitude);
+    this.element.querySelector('#latitude').innerHTML = `Latitude: ${latDMS}`;
+    this.element.querySelector('#longitude').innerHTML = `Longitude: ${lonDMS}`;
   }
 
   getMapElement() {

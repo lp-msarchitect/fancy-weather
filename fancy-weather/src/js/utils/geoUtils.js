@@ -27,3 +27,11 @@ export async function getCurrentPosition() {
     navigator.geolocation.getCurrentPosition(success, error, geoOptions);
   });
 }
+
+export function ConvertDDToDMS(dd) {
+  const deg = dd | 0;
+  const frac = Math.abs(dd - deg);
+  const min = (frac * 60) | 0;
+  const sec = (frac * 3600 - min * 60) | 0;
+  return `${deg}° ${min}' ${sec}"`;
+}
