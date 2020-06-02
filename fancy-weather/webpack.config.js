@@ -12,7 +12,7 @@ module.exports = (env, options) => {
     mode: isProduction ? 'production' : 'development',
     devtool: isProduction ? 'none' : 'source-map',
     watch: !isProduction,
-    entry: ['./src/js/index.js', './src/styles/style.scss'],
+    entry: ['@babel/polyfill', './src/js/index.js', './src/styles/style.scss'],
     output: {
       path: path.join(__dirname, '/dist'),
       filename: 'script.js',
@@ -62,6 +62,14 @@ module.exports = (env, options) => {
         {
           test: /\.html$/,
           loader: 'html-loader',
+        },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: {
+            loader: 'babel-loader',
+            options: { presets: ['@babel/preset-env'] },
+          },
         },
       ],
     },
