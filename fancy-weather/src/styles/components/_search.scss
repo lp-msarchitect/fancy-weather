@@ -40,6 +40,11 @@
       left: -2em;
       background-image: url('../../assets/images/mic.svg');
     }
+
+    &--mic-on {
+      left: -2em;
+      background-image: url('../../assets/images/mic-on.svg');
+    }
   }
 
   &__button {

@@ -1,6 +1,7 @@
 import ViewComponent from '../ViewComponent';
 import ControlEvent from '../../utils/ControlEvent';
 import { getCoordsByCityName } from '../../utils/clientApi';
+import VoiceSearch from '../VoiceSearch';
 
 export default class ControlsView extends ViewComponent {
   constructor(global) {
@@ -38,6 +39,7 @@ export default class ControlsView extends ViewComponent {
           <div class="search__controls">
             <button
               class="search__controls-item search__controls-item--mic"
+              id="voice-search"
             ></button>
             <button class="search__button button" id="start-search">Search</button>
           </div>
@@ -45,6 +47,8 @@ export default class ControlsView extends ViewComponent {
       </section>`;
 
     super(global, html);
+    this.voiceSearch = new VoiceSearch();
+    this.voiceSearch.subscribe(this.onVoiceSearch.bind(this));
   }
 
   setDispatcher(dispatcher) {
@@ -57,6 +61,7 @@ export default class ControlsView extends ViewComponent {
     const changeImgButton = this.element.querySelector('#change-img-button');
     const startSearchButton = this.element.querySelector('#start-search');
     const inputSearch = this.element.querySelector('.search__input');
+    const voiceSearch = this.element.querySelector('#voice-search');
 
     changeImgButton.addEventListener('click', this.changeImgHandler.bind(this));
     langSelectorElement.addEventListener(
@@ -75,9 +80,28 @@ export default class ControlsView extends ViewComponent {
     );
 
     inputSearch.addEventListener('keydown', this.startSearchHandler.bind(this));
+
+    voiceSearch.addEventListener('click', this.startVoiceSearch.bind(this));
   }
 
   removeEventListeners() {}
+
+  startVoiceSearch(e) {
+    if (this.voiceSearch.isActive()) {
+      e.target.classList.remove('search__controls-item--mic-on');
+      e.target.classList.add('search__controls-item--mic');
+      this.voiceSearch.off();
+    } else {
+      e.target.classList.remove('search__controls-item--mic');
+      e.target.classList.add('search__controls-item--mic-on');
+      this.voiceSearch.on();
+    }
+  }
+
+  onVoiceSearch(data) {
+    this.element.querySelector('.search__input').value = data;
+    this.startSearchHandler(data);
+  }
 
   changeImgHandler(e) {
     this.dispatcher.broadcast(new ControlEvent('changeimg'));
