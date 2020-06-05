@@ -14,8 +14,10 @@ export default class GeoDataView extends ViewComponent {
   }
 
   set coords(value) {
-    const latDMS = ConvertDDToDMS(value.latitude);
-    const lonDMS = ConvertDDToDMS(value.longitude);
+    let latDMS = ConvertDDToDMS(Math.abs(value.latitude));
+    latDMS = value.latitude < 0 ? `${latDMS} S` : `${latDMS} N`;
+    let lonDMS = ConvertDDToDMS(Math.abs(value.longitude));
+    lonDMS = value.longitude < 0 ? `${lonDMS} W` : `${lonDMS} E`;
     this.element.querySelector('#latitude').innerHTML = `Latitude: ${latDMS}`;
     this.element.querySelector('#longitude').innerHTML = `Longitude: ${lonDMS}`;
   }
