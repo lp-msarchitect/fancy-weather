@@ -15,6 +15,10 @@
     font-size: 44px;
     // background-color: red;
     text-transform: uppercase;
+
+    @media (max-width: 520px) {
+      hyphens: auto;
+    }
   }
 
   &__date-time {
@@ -37,6 +41,10 @@
     // background-color: yellow;
     text-transform: uppercase;
     text-align: center;
+
+    @media (max-width: 520px) {
+      font-size: 200px;
+    }
   }
 
   &__condition {
@@ -45,12 +53,21 @@
     left: -25px;
     height: 140px;
     width: 240px;
-    position: absolute;
-    // object-fit: cover;
     background-image: url('../../assets/images/weather_icons/day/200.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
+
+    @media (max-width: 1050px) {
+      top: 0;
+      left: 150px;
+    }
+
+    @media (max-width: 520px) {
+      top: 0;
+      left: 150px;
+      width: 140px;
+    }
   }
 
   &__grad {
@@ -70,9 +87,13 @@
     font-size: 22px;
     font-weight: bold;
     text-transform: uppercase;
-    // background-color: blue;
+    white-space: nowrap;
     align-self: flex-end;
     margin-bottom: 35px;
+
+    @media (max-width: 850px) {
+      flex-basis: 100%;
+    }
   }
 
   & p {

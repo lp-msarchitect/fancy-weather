@@ -17,6 +17,10 @@
     &::placeholder {
       color: $color-text;
     }
+
+    @media (max-width: 520px) {
+      width: 100%;
+    }
   }
 
   &__controls {

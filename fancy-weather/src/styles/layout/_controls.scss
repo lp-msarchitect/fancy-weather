@@ -1,5 +1,9 @@
 .controls {
   display: flex;
-
   justify-content: space-between;
+
+  @media (max-width: 520px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
