@@ -1,5 +1,5 @@
   ## Fancy Weather
-  ![](https://i.imgur.com/ietlMzl.gif)
+![](https://i.imgur.com/ietlMzl.gif)
  
  SPA weather forecast
  
